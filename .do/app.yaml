@@ -1,0 +1,14 @@
+name: simple-node-api
+region: nyc
+services:
+- environment_slug: node-js
+  github:
+    branch: main
+    deploy_on_push: true
+    repo: unixsam/simple-node-api
+  http_port: 3000
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  name: app
+  routes:
+  - path: /

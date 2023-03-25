@@ -4,22 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Last Added Data</title>
+    <script>
+        function convertToGMT4(dateTime) {
+            var date = new Date(dateTime);
+            var targetOffset = 4 * 60; // GMT+4 in minutes
+            var currentOffset = date.getTimezoneOffset();
+            var adjustedDate = new Date(date.getTime() + (targetOffset - currentOffset) * 60 * 1000);
+            return adjustedDate.toLocaleString();
+        }
+    </script>
 </head>
 <body>
     <h1>Last Added Data</h1>
-    <table>
-        <tr>
-            <th>Date/Time</th>
-            <th>Temperature</th>
-            <th>Humidity</th>
-            <th>Relay Status</th>
-        </tr>
-        <tr>
-            <td><%= data.dateTime %></td>
-            <td><%= data.temperature %> °C</td>
-            <td><%= data.humidity %> %</td>
-            <td><%= data.relay_status ? 'ON' : 'OFF' %></td>
-        </tr>
-    </table>
+    <p>Date/Time (GMT+4): <script>document.write(convertToGMT4('<%= data.dateTime %>'));</script></p>
+    <p>Temperature: <%= data.temperature %> °C</p>
+    <p>Humidity: <%= data.humidity %> %</p>
+    <p>Relay Status: <%= data.relay_status ? 'ON' : 'OFF' %></p>
+    <p>Created At (GMT+4): <script>document.write(convertToGMT4('<%= data.created_at %>'));</script></p>
+    <p>Updated At (GMT+4): <script>document.write(convertToGMT4('<%= data.updated_at %>'));</script></p>
 </body>
 </html>

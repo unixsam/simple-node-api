@@ -24,6 +24,19 @@ app.get('/api', (req, res) => {
   res.json({ message: 'Hello from the Simple Node.js API!' });
 });
 
+app.get('/api/last', (req, res) => {
+    const query = 'SELECT * FROM sensor_data ORDER BY created_at DESC LIMIT 1';
+  
+    connection.query(query, (err, results) => {
+      if (err) {
+        console.error('Error fetching last added data:', err.stack);
+        res.status(500).json({ message: 'Error fetching last added data', error: err });
+      } else {
+        res.status(200).json({ message: 'Last added data', data: results[0] });
+      }
+    });
+});
+
 // Add a new GET route to test MySQL connection
 app.get('/api/test-connection', (req, res) => {
   connection.ping((err) => {

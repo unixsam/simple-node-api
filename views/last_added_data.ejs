@@ -14,15 +14,32 @@
     </script>
 </head>
 <body>
-    <h1>Last Added Data</h1>
-    <p>Date/Time (Original): <%= data.dateTime %></p>
-    <p>Date/Time (GMT+4): <script>document.write(convertToGMT4('<%= data.dateTime %>'));</script></p>
-    <p>Temperature: <%= data.temperature %> °C</p>
-    <p>Humidity: <%= data.humidity %> %</p>
-    <p>Relay Status: <%= data.relay_status ? 'ON' : 'OFF' %></p>
-    <p>Created At (Original): <%= data.created_at %></p>
-    <p>Created At (GMT+4): <script>document.write(convertToGMT4('<%= data.created_at %>'));</script></p>
-    <p>Updated At (Original): <%= data.updated_at %></p>
-    <p>Updated At (GMT+4): <script>document.write(convertToGMT4('<%= data.updated_at %>'));</script></p>
+    <h1>Last 10 Records</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Date/Time (GMT+4)</th>
+                <th>Temperature</th>
+                <th>Humidity</th>
+                <th>Relay Status</th>
+                <th>Created At (GMT+4)</th>
+                <th>Updated At (GMT+4)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% data.forEach((record) => { %>
+                <tr>
+                    <td><script>document.write(convertToGMT4('<%= record.dateTime %>'));</script></td>
+                    <td><%= record.temperature %> °C</td>
+                    <td><%= record.humidity %> %</td>
+                    <td><%= record.relay_status ? 'ON' : 'OFF' %></td>
+                    <td><script>document.write(convertToGMT4('<%= record.created_at %>'));</script></td>
+                    <td><script>document.write(convertToGMT4('<%= record.updated_at %>'));</script></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
 </body>
 </html>
+
+                   

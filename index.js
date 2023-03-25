@@ -76,7 +76,7 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 // Add a new route to fetch and display the last added data as an HTML page
-app.get('/last-added-data', (req, res) => {
+app.get('/last-added', (req, res) => {
   const query = 'SELECT * FROM sensor_data ORDER BY created_at DESC LIMIT 1';
 
   connection.query(query, (err, results) => {
@@ -84,10 +84,22 @@ app.get('/last-added-data', (req, res) => {
       console.error('Error fetching last added data:', err.stack);
       res.status(500).render('error', { message: 'Error fetching last added data', error: err });
     } else {
-      res.render('last_added_data', { data: results[0] });
+      res.render('last_added', { data: results[0] });
     }
   });
 });
+
+
+app.get('/last-added-10', async (req, res) => {
+    try {
+      const [rows, _] = await pool.execute('SELECT * FROM sensor_data ORDER BY dateTime DESC LIMIT 10');
+      res.render('last_added_data', { data: rows });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Error fetching data from MySQL', error: err });
+    }
+  });
+  
 
 
 app.listen(port, () => {

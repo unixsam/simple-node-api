@@ -45,16 +45,17 @@ app.post('/api', (req, res) => {
   // Insert data into the MySQL database
   const query = 'INSERT INTO sensor_data (dateTime, temperature, humidity, relay_status) VALUES (?, ?, ?, ?)';
   const values = [receivedData.dateTime, receivedData.temperature, receivedData.humidity, receivedData.relay_status];
-
-  connection.query(query, values, (err, result) => {
-    if (err) {
-      console.error('Error inserting data into MySQL:', err.stack);
-      res.status(500).json({ message: 'Error inserting data into MySQL', error: err });
-    } else {
-      console.log('Data inserted into MySQL with ID:', result.insertId);
-      res.status(200).json({ message: 'JSON object received and data inserted into MySQL', data: receivedData });
-    }
-  });
+  console.error('Error inserting data into MySQL:', err.stack);
+  res.status(500).json({ message: 'submitted data', receivedData });
+//   connection.query(query, values, (err, result) => {
+//     if (err) {
+//       console.error('Error inserting data into MySQL:', err.stack);
+//       res.status(500).json({ message: 'Error inserting data into MySQL', error: err });
+//     } else {
+//       console.log('Data inserted into MySQL with ID:', result.insertId);
+//       res.status(200).json({ message: 'JSON object received and data inserted into MySQL', data: receivedData });
+//     }
+//   });
 });
 
 app.listen(port, () => {

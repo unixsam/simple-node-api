@@ -43,7 +43,7 @@ app.post('/api', (req, res) => {
   console.log('Received JSON object:', receivedData);
 
   // Insert data into the MySQL database
-  const query = 'INSERT INTO your_table_name (dateTime, temperature, humidity, relay_status) VALUES (?, ?, ?, ?)';
+  const query = 'INSERT INTO sensor_data (dateTime, temperature, humidity, relay_status) VALUES (?, ?, ?, ?)';
   const values = [receivedData.dateTime, receivedData.temperature, receivedData.humidity, receivedData.relay_status];
 
   connection.query(query, values, (err, result) => {

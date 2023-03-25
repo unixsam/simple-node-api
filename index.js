@@ -21,7 +21,7 @@ connection.connect((err) => {
 });
 
 app.get('/api', (req, res) => {
-  res.json({ message: 'Hello from the Simple Node.js API!' });
+  res.json({ message: 'Hello from the Simple Node.js API!', req});
 });
 
 // Add a new GET route to test MySQL connection

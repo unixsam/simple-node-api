@@ -7,7 +7,7 @@
     <script>
         function convertToGMT4(dateTime) {
             var date = new Date(dateTime + " UTC");
-            var targetOffset = 4 * 60; // GMT+4 in minutes
+            var targetOffset = 0 * 60; // GMT+4 in minutes
             var adjustedDate = new Date(date.getTime() + targetOffset * 60 * 1000);
             return adjustedDate.toLocaleString();
         }

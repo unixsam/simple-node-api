@@ -6,10 +6,9 @@
     <title>Last Added Data</title>
     <script>
         function convertToGMT4(dateTime) {
-            var date = new Date(dateTime);
+            var date = new Date(dateTime + " UTC");
             var targetOffset = 4 * 60; // GMT+4 in minutes
-            var currentOffset = date.getTimezoneOffset();
-            var adjustedDate = new Date(date.getTime() + (targetOffset - currentOffset) * 60 * 1000);
+            var adjustedDate = new Date(date.getTime() + targetOffset * 60 * 1000);
             return adjustedDate.toLocaleString();
         }
     </script>

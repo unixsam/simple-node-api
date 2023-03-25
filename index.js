@@ -21,7 +21,7 @@ connection.connect((err) => {
 });
 
 app.get('/api', (req, res) => {
-  res.json({ message: 'Hello from the Simple Node.js API!', req});
+  res.json({ message: 'Hello from the Simple Node.js API!', data: req});
 });
 
 // Add a new GET route to test MySQL connection
@@ -40,8 +40,8 @@ app.get('/api/test-connection', (req, res) => {
 // Add a POST route to handle incoming JSON objects
 app.post('/api', (req, res) => {
   const receivedData = req.body;
-  console.log('Received JSON object:', req.body);
-  res.json(req.json());
+  console.log('Received JSON object:', receivedData);
+  res.json({data: req});
   // Insert data into the MySQL database
   const query = 'INSERT INTO sensor_data (dateTime, temperature, humidity, relay_status) VALUES (?, ?, ?, ?)';
   const values = [receivedData.dateTime, receivedData.temperature, receivedData.humidity, receivedData.relay_status];

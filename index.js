@@ -40,7 +40,7 @@ app.get('/api/test-connection', (req, res) => {
 // Add a POST route to handle incoming JSON objects
 app.post('/api', (req, res) => {
   const receivedData = req.body;
-  console.log('Received JSON object:', req.json());
+  console.log('Received JSON object:', req);
 
   // Insert data into the MySQL database
   const query = 'INSERT INTO sensor_data (dateTime, temperature, humidity, relay_status) VALUES (?, ?, ?, ?)';

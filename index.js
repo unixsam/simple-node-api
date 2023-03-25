@@ -90,9 +90,9 @@ app.get('/last-added', (req, res) => {
 });
 
 
-app.get('/last-added-10', async (req, res) => {
+app.get('/last-added-date', async (req, res) => {
     try {
-      const [rows, _] = await pool.execute('SELECT * FROM sensor_data ORDER BY dateTime DESC LIMIT 10');
+      const [rows, _] = await pool.execute('SELECT * FROM sensor_data ORDER BY created_at DESC LIMIT 10');
       res.render('last_added_data', { data: rows });
     } catch (err) {
       console.error(err);

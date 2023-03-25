@@ -73,7 +73,7 @@ app.post('/api', (req, res) => {
 
 // Add EJS as the view engine
 app.set('view engine', 'ejs');
-app.set('views', './views');
+app.set('views', 'views');
 
 // Add a new route to fetch and display the last added data as an HTML page
 app.get('/last-added-data', (req, res) => {

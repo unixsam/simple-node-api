@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last Added Data</title>
+</head>
+<body>
+    <h1>Last Added Data</h1>
+    <table>
+        <tr>
+            <th>Date/Time</th>
+            <th>Temperature</th>
+            <th>Humidity</th>
+            <th>Relay Status</th>
+        </tr>
+        <tr>
+            <td><%= data.dateTime %></td>
+            <td><%= data.temperature %> °C</td>
+            <td><%= data.humidity %> %</td>
+            <td><%= data.relay_status ? 'ON' : 'OFF' %></td>
+        </tr>
+    </table>
+</body>
+</html>

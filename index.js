@@ -33,7 +33,7 @@ app.get('/api/last', (req, res) => {
         res.status(500).json({ message: 'Error fetching last added data', error: err });
       } else {
         res.status(200).json({ message: 'Last added data', data: results[0] });
-      }
+      }ta
     });
 });
 
@@ -68,6 +68,27 @@ app.post('/api', (req, res) => {
     }
   });
 });
+
+
+
+// Add EJS as the view engine
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
+// Add a new route to fetch and display the last added data as an HTML page
+app.get('/last-added-data', (req, res) => {
+  const query = 'SELECT * FROM sensor_data ORDER BY created_at DESC LIMIT 1';
+
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching last added data:', err.stack);
+      res.status(500).render('error', { message: 'Error fetching last added data', error: err });
+    } else {
+      res.render('last_added_data', { data: results[0] });
+    }
+  });
+});
+
 
 app.listen(port, () => {
   console.log(`API is running on port ${port}`);

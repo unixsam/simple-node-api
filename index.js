@@ -45,7 +45,7 @@ app.post('/api', (req, res) => {
   // Insert data into the MySQL database
   const query = 'INSERT INTO sensor_data (dateTime, temperature, humidity, relay_status) VALUES (?, ?, ?, ?)';
   const values = [receivedData.dateTime, receivedData.temperature, receivedData.humidity, receivedData.relay_status];
-  console.error('Error inserting data into MySQL:', err.stack);
+
   res.status(200).json({ message: 'submitted data', data: receivedData });
 //   connection.query(query, values, (err, result) => {
 //     if (err) {
